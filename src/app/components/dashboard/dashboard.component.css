@@ -1,0 +1,76 @@
+tr.dashboard-detail-row {
+  height: 0;
+  pointer-events: none;
+}
+
+tr.dashboard-element-row:not(.dashboard-expanded-row):hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+tr.dashboard-element-row:not(.dashboard-expanded-row):active {
+  background: #efefef;
+  cursor: pointer;
+}
+
+.dashboard-element-row td {
+  border-bottom-width: 0;
+}
+
+.dashboard-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.dashboard-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.dashboard-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.dashboard-element-description {
+  padding: 16px;
+}
+
+.dashboard-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-header-cell {
+  background-color: #37C6D6;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+.mat-stepper-horizontal {
+  width: 100%;
+}
+.mat-step-header {
+  pointer-events: none !important;
+}
+
+.mat-horizontal-stepper-header {
+  pointer-events: none;
+}
+table{
+  width: 100%;
+}

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   successMessage: string;
   invalidLogin = false;
   loginSuccess = false;
-
+  @Output("onActivate") onActivate: EventEmitter<any> = new EventEmitter();
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -52,10 +52,13 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
+      this.onActivate.emit();
       this.router.navigate(['/dashboard']);
     }, () => {
       this.invalidLogin = true;
       this.loginSuccess = false;
     });
   }
+
+
 }

@@ -12,7 +12,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PeopleComponent, EditPeopleDialog } from './components/people/people.component';
 import { AngularMaterialModule } from './angular-material.module';
-import { EdgeComponent } from './components/edge/edge.component';
+import { EdgeComponent, EditEdgeDialog } from './components/edge/edge.component';
+import { LocationComponent } from './components/location/location.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { EdgeComponent } from './components/edge/edge.component';
     DashboardComponent,
     PeopleComponent,
     EditPeopleDialog,
-    EdgeComponent
+    EdgeComponent,
+    EditEdgeDialog,
+    LocationComponent
   ],
   imports: [
     BrowserModule,

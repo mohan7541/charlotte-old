@@ -1,318 +1,174 @@
-<div class="sidebar-mini">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="primary" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 ml-auto mr-auto">
+        <div class="page-categories">
+          <ul class="nav nav-pills nav-pills-brand nav-pills-icons justify-content-center" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#list" role="tablist">
+                <i class="material-icons">list</i> List
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " data-toggle="tab" href="#add" role="tablist">
+                <i class="material-icons">add</i> Add
+              </a>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#edit" role="tablist">
+                <i class="material-icons">edit</i> Edit
+              </a>
+            </li>-->
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo" >
-        <a href="http://www.99bridges.com" class="simple-text logo-mini" >
-          <img style="width: 50px;height: 50px;left:12px;position: absolute" src="../../../assets/img/ec.png" alt="">
-        </a>
-        <a href="http://www.99bridges.com" class="simple-text logo-normal" style="padding-left: 25px;">
-          <img style="width: 128px;height: 48px;padding-top: 5px" src="../../../assets/img/ectext.png" alt=""/>
-          <!--<img src="assets/img/ec-clt-small.png" alt="">-->
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
 
-        <ul class="nav" id="ulNavSideBar" >
+          </ul>
+          <div class="tab-content tab-space tab-subcategories">
+            <div class="tab-pane" id="add">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Add User </h4>
+                  <p class="card-category">
 
-          <li class="nav-item" *ngFor="let eachItem of menuItems">
-            <a class="nav-link" routerLink="{{eachItem.routerLink}}">
-              <i class="{{eachItem.class}}" aria-hidden="true"></i>
-              <p> {{eachItem.name}} </p>
-            </a>
-
-          </li>
-
-          <li class="nav-item" style="border-top: 1px">
-
-          </li>
-        </ul>
-
-        <!--p style="position: absolute; bottom: 0; width:100%" align="center">Powered by 99Bridges</p-->
-        <span style="text-align: center;">
-          <img src="../../../assets/img/Logo_99Bridges_Red_White.png" style="width: 48px;height: 48px; position: absolute; bottom: 30px; margin-left: 100px; filter: drop-shadow(0 0 0.75rem white);" align="right"/>
-          </span>
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " >
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-minimize">
-              <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
-                <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
-                <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
-              </button>
-            </div>
-
-            <!-- <img src="assets/img/banner-1.png" style="
-   background-repeat-x: repeat;
-   width: 100%;
-   height: 177px;
-   top: 60px;
-   position: absolute;" /> -->
-
-            <!--<a class="navbar-brand" href="#" id="pageLabelLink"></a>-->
-
-          </div>
-          <button class="navbar-toggler" id="minibarBtn" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-
-            <ul class="navbar-nav">
-              <!-- Commented Alerts for Now
-               <li class="nav-item dropdown">
-                 <a class="nav-link" href="http://99b.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <i class="material-icons">notifications</i>
-                   <span class="notification">3</span>
-                   <p class="d-lg-none d-md-block">
-                     Some Actions
-                   </p>
-                 </a>
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                   <a class="dropdown-item" href="#">4 Refill request submitted</a>
-                   <a class="dropdown-item" href="#">2 Refill(s) completed</a>
-                   <a class="dropdown-item" href="#">1/12/20 Detergent truck in your area</a>
-                 </div>
-               </li>
-              -->
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
                   </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" onclick="logout()">Log out</a>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content" id="mainContainerDiv" style = "margin-top: 35px">
-
-        <div class="content">
-          <div class="container-fluid" >
-            <div class="row">
-              <div class="col-md-12 ml-auto mr-auto">
-                <div class="page-categories">
-                  <ul class="nav nav-pills nav-pills-brand nav-pills-icons justify-content-center" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#list" role="tablist">
-                        <i class="material-icons">list</i> List
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link " data-toggle="tab" href="#add" role="tablist">
-                        <i class="material-icons">add</i> Add
-                      </a>
-                    </li>
-                    <!--<li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#edit" role="tablist">
-                        <i class="material-icons">edit</i> Edit
-                      </a>
-                    </li>-->
-
-
-                  </ul>
-                  <div class="tab-content tab-space tab-subcategories">
-                    <div class="tab-pane" id="add">
-                      <div class="card">
-                        <div class="card-header">
-                          <h4 class="card-title">Add User </h4>
-                          <p class="card-category">
-
-                          </p>
+                <div class="card-body">
+                  <form (ngSubmit)="onSubmit()" [formGroup]="addForm" action="/" class="form-horizontal" id="addUserForm"
+                        method="post">
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">First Name</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input class="form-control" formControlName="firstName" id="firstName" type="text">
+                          <span class="bmd-help">First Name</span>
                         </div>
-                        <div class="card-body">
-                          <form id="addUserForm" method="post" action="/" class="form-horizontal" [formGroup]="addForm" (ngSubmit)="onSubmit()">
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label">First Name</label>
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="text" formControlName="firstName" class="form-control" id="firstName">
-                                  <span class="bmd-help">First Name</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label">Last Name</label>
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" id="lastName" formControlName="lastName">
-                                  <span class="bmd-help">Last Name</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label">Email</label>
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" id="email" formControlName="email">
-                                  <span class="bmd-help">email</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label">Password</label>
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="password" class="form-control" id="password" formControlName="password">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label">Location</label>
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" id="location" formControlName="location">
-                                  <span class="bmd-help">location</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
-                              <div class="col-sm-10 checkbox-radios">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" [defaultChecked]="true" id="enabled" formControlName="enabled">
-                                    <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                                  </label>
-                                </div>
-
-
-
-                              </div>
-                              <button type="submit" class="btn btn-fill btn-primary ml-auto mr-auto" >Submit<div class="ripple-container"></div></button>
-
-                            </div>
-
-                          </form>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Last Name</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input class="form-control" formControlName="lastName" id="lastName" type="text">
+                          <span class="bmd-help">Last Name</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input class="form-control" formControlName="email" id="email" type="text">
+                          <span class="bmd-help">email</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input class="form-control" formControlName="password" id="password" type="password">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Location</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input class="form-control" formControlName="location" id="location" type="text">
+                          <span class="bmd-help">location</span>
                         </div>
                       </div>
                     </div>
 
-                    <div class="tab-pane active" id="list">
-                      <div class="card">
-                        <div class="card-header">
-                          <h4 class="card-title ">Peoples</h4>
-                          <p class="card-category">All registered peoples</p>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
+                      <div class="col-sm-10 checkbox-radios">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input [defaultChecked]="true" class="form-check-input" formControlName="enabled" id="enabled"
+                                   type="checkbox">
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
                         </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
 
-                            <table class="table table-hover">
-                              <thead class=" text-info" >
-                              <th *ngFor="let eachHeader of peopleHeaders">
-                                {{eachHeader}}
-                              </th>
 
-                              </thead>
-                              <tbody >
-                              <tr *ngFor="let people of users" class="d-table-row">
+                      </div>
+                      <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+                        <div class="ripple-container"></div>
+                      </button>
 
-                                <td>
-                                 {{people.firstName}}
-                                </td>
-                                <td>
-                                  {{people.lastName}}
-                                </td>
-                                <td>
-                                  {{people.email}}
-                                </td>
-                                <td>
-                                  {{people.location}}
-                                </td>
-                                <td>
-                                  {{people.enabled ? 'Active' : 'Inactive'}}
-                                </td>
-                                <td>
-                                  <a (click)="openDialog(people)" >
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane active" id="list">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title ">Peoples</h4>
+                  <p class="card-category">All registered peoples</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+
+                    <table class="table table-hover">
+                      <thead class=" text-info">
+                      <th *ngFor="let eachHeader of peopleHeaders">
+                        {{eachHeader}}
+                      </th>
+
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let people of users" class="d-table-row">
+
+                        <td>
+                          {{people.firstName}}
+                        </td>
+                        <td>
+                          {{people.lastName}}
+                        </td>
+                        <td>
+                          {{people.email}}
+                        </td>
+                        <td>
+                          {{people.location}}
+                        </td>
+                        <td>
+                          {{people.enabled ? 'Active' : 'Inactive'}}
+                        </td>
+                        <td>
+                          <a (click)="openDialog(people)">
                                     <span class="material-icons">
                                       edit
                                       </span>
-                                  </a>
-                                </td>
-                                <td>
-                                  <!--<div class=" card-profile" *ngIf="people.profilePhoto">
-                                    <div class="card-avatar">
-                                      <a href="javascript:;">
-                                        <img  src="{{'data:image/jpeg;base64,' + people.profilePhoto.data}}"
-                                              width="50px"
-                                              class="rounded-circle z-depth-2"/>
-                                      </a>
-                                    </div>
-                                  </div>-->
-                                </td>
-                              </tr>
+                          </a>
+                        </td>
+                        <td>
+                          <!--<div class=" card-profile" *ngIf="people.profilePhoto">
+                            <div class="card-avatar">
+                              <a href="javascript:;">
+                                <img  src="{{'data:image/jpeg;base64,' + people.profilePhoto.data}}"
+                                      width="50px"
+                                      class="rounded-circle z-depth-2"/>
+                              </a>
+                            </div>
+                          </div>-->
+                        </td>
+                      </tr>
 
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                    </div>
-
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="#">
-                  99 Bridges
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>
-            <a href="" target="_blank">99 Bridges</a>.
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
 </div>
-

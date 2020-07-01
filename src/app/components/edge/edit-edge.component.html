@@ -1,0 +1,90 @@
+<div class="card">
+
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Edge ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="edgeId" id="edgeId" type="text">
+            <span class="bmd-help">Edge ID</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="description" id="description" type="text">
+            <span class="bmd-help">Description</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Manufacturer</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="manufacturer" id="manufacturer" type="text">
+            <span class="bmd-help">Manufacturer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Model</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="model" id="model" type="text">
+            <span class="bmd-help">Model</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Serial Number</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="serialNumber" id="serialNumber" type="text">
+            <span class="bmd-help">serial Number</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">IP Address</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="ipAddress" id="ipAddress" type="text">
+            <span class="bmd-help">IP Address</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Location ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="locationId" id="locationId" type="text">
+            <span class="bmd-help">Location ID</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="status" id="status" type="text">
+            <span class="bmd-help">Status</span>
+          </div>
+        </div>
+      </div>
+        <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+          <div class="ripple-container"></div>
+        </button>
+
+
+    </form>
+  </div>
+</div>

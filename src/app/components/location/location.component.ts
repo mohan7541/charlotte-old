@@ -1,18 +1,17 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {Edge} from '../../model/Edge';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NavigationEnd, Router} from '@angular/router';
-import {PeopleService} from '../../service/people.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
-import {EditPeopleDialog} from '../people/people.component';
-import {EdgeService} from '../../service/edge.service';
+import { Component, OnInit } from '@angular/core';
+import {Edge} from "../../model/Edge";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {NavigationEnd, Router} from "@angular/router";
+import {EdgeService} from "../../service/edge.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {EditEdgeDialog} from "../edge/edge.component";
 
 @Component({
-  selector: 'app-edge',
-  templateUrl: './edge.component.html',
-  styleUrls: ['./edge.component.css']
+  selector: 'app-location',
+  templateUrl: './location.component.html',
+  styleUrls: ['./location.component.css']
 })
-export class EdgeComponent implements OnInit, OnDestroy {
+export class LocationComponent implements OnInit {
 
   edges: Edge[];
   addForm: FormGroup;
@@ -91,54 +90,4 @@ export class EdgeComponent implements OnInit, OnDestroy {
     }
   }
 
-}
-@Component({
-  selector: 'edit-edge-dialog',
-  templateUrl: './edit-edge.component.html',
-  styleUrls: ['./edge.component.css']
-})
-// tslint:disable-next-line:component-class-suffix
-export class EditEdgeDialog implements OnInit {
-  currentEdge: Edge;
-  form: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private edgeService: EdgeService,
-    private router: Router,
-    public dialogRef: MatDialogRef<EditPeopleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Edge) {
-    this.currentEdge = data;
-  }
-
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      id: ['', ''],
-      edgeId: ['', Validators.required],
-      description: ['', Validators.required],
-      manufacturer: ['', Validators.required],
-      model: ['', Validators.required],
-      serialNumber: ['', Validators.required],
-      ipAddress: ['', Validators.required],
-      locationId: ['', Validators.required],
-      status: ['', Validators.required]
-    });
-
-    this.form.setValue(this.currentEdge);
-  }
-
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  onSubmit() {
-    const edge = this.form.value;
-    this.edgeService.updateEdge(edge)
-      .subscribe(data => {
-        this.dialogRef.close();
-        this.router.navigate(['things']);
-      });
-    console.log(edge);
-  }
 }

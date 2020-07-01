@@ -1,78 +1,78 @@
-  <div class="card">
-    <div class="card-avatar text-center" *ngIf="currentUser.profilePhoto">
-      <a href="javascript:void(0)">
-        <img src="{{'data:image/jpeg;base64,' + currentUser.profilePhoto.data}}"
-             width="100px"
-             class="rounded-circle z-depth-2" />
-      </a>
-    </div>
-    <div class="card-body">
-      <form id="editForm" method="post" action="/" class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <label class="col-sm-2 col-form-label">First Name</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <input type="text" formControlName="firstName" class="form-control" id="firstName">
-              <span class="bmd-help">First Name</span>
-            </div>
+<div class="card">
+  <div *ngIf="currentUser.profilePhoto" class="card-avatar text-center">
+    <a href="javascript:void(0)">
+      <img class="rounded-circle z-depth-2"
+           src="{{'data:image/jpeg;base64,' + currentUser.profilePhoto.data}}"
+           width="100px"/>
+    </a>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
+      <div class="row">
+        <label class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
+            <span class="bmd-help">First Name</span>
           </div>
         </div>
-        <div class="row">
-          <label class="col-sm-2 col-form-label">Last Name</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <input type="text" class="form-control" id="lastName" formControlName="lastName">
-              <span class="bmd-help">Last Name</span>
-            </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="lastName" id="lastName" type="text">
+            <span class="bmd-help">Last Name</span>
           </div>
         </div>
-        <div class="row">
-          <label class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <input type="text" class="form-control" id="email" formControlName="email">
-              <span class="bmd-help">email</span>
-            </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="email" id="email" type="text">
+            <span class="bmd-help">email</span>
           </div>
         </div>
-        <!--<div class="row">
-          <label class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <input type="password" class="form-control" id="password" formControlName="password">
-            </div>
-          </div>
-        </div>-->
-        <div class="row">
-          <label class="col-sm-2 col-form-label">Location</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <input type="text" class="form-control" id="location" formControlName="location">
-              <span class="bmd-help">location</span>
-            </div>
+      </div>
+      <!--<div class="row">
+        <label class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" formControlName="password">
           </div>
         </div>
+      </div>-->
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Location</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="location" id="location" type="text">
+            <span class="bmd-help">location</span>
+          </div>
+        </div>
+      </div>
 
-        <div class="row">
-          <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
-          <div class="col-sm-10 checkbox-radios">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="enabled" formControlName="enabled">
-                <span class="form-check-sign">
+      <div class="row">
+        <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
+        <div class="col-sm-10 checkbox-radios">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" formControlName="enabled" id="enabled" type="checkbox">
+              <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
-              </label>
-            </div>
-
-
-
+            </label>
           </div>
-          <button type="submit" class="btn btn-fill btn-primary ml-auto mr-auto" >Submit<div class="ripple-container"></div>
-          </button>
+
 
         </div>
+        <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+          <div class="ripple-container"></div>
+        </button>
 
-      </form>
-    </div>
+      </div>
+
+    </form>
   </div>
+</div>
