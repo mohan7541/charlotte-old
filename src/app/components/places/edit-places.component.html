@@ -1,0 +1,49 @@
+<div class="card">
+
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Location ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="locationId" id="locationId" type="text">
+            <span class="bmd-help">Location ID</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="address1" id="address1" type="text">
+            <span class="bmd-help">Address 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Manufacturer</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="address2" id="address2" type="text">
+            <span class="bmd-help">Address 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Pincode</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="pincode" id="pincode" type="text">
+            <span class="bmd-help">Pincode</span>
+          </div>
+        </div>
+      </div>
+        <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+          <div class="ripple-container"></div>
+        </button>
+
+
+    </form>
+  </div>
+</div>

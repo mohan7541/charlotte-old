@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import {  throwError } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {Edge} from "../model/Edge";
+import Item from "../model/Item";
 
 
 @Injectable({
@@ -32,5 +34,18 @@ export class ItemService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+  }
+
+
+  getAllItems(): Observable<Item[]> {
+    return this.httpClient.get<Item[]>(this.apiUrl);
+  }
+
+  createItem(item: Item) {
+    return this.httpClient.post<Item>(this.apiUrl, item);
+  }
+
+  updateItem(item: Item) {
+    return this.httpClient.put<Item>(this.apiUrl + '/' + item.id, item);
   }
 }

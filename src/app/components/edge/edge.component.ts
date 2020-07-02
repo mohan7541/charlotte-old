@@ -18,12 +18,6 @@ export class EdgeComponent implements OnInit, OnDestroy {
   addForm: FormGroup;
   mySubscription: any;
 
-  menuItems = [
-    {routerLink: '/dashboard', name: 'Dashboard', class: 'fa fa-tachometer'},
-    {routerLink: '/people', name: 'People', class: 'fa fa-users'},
-    {routerLink: '/things', name: 'Things', class: 'fa fa-wifi'},
-    {routerLink: '/places', name: 'Place', class: 'fa fa-map-marker'}
-  ];
   peopleHeaders = ['Edge ID', 'Description', 'Manufacturer', 'Model', 'Serial Number', 'IP Address', 'Location ID', 'Status', 'Edit'];
 
   constructor(private router: Router,

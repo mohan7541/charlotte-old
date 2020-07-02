@@ -10,7 +10,8 @@ import { RootComponent } from './components/root/root.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {PeopleComponent} from './components/people/people.component';
 import {EdgeComponent} from "./components/edge/edge.component";
-import {LocationComponent} from './components/location/location.component';
+import {PlacesComponent} from "./components/places/places.component";
+import {ItemComponent} from "./components/item/item.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard] },
   { path: 'people', component: PeopleComponent, canActivate : [AuthGuard] },
   { path: 'things', component: EdgeComponent, canActivate : [AuthGuard] },
-  { path: 'places', component: LocationComponent, canActivate : [AuthGuard] }
+  { path: 'places', component: PlacesComponent, canActivate : [AuthGuard] },
+  { path: 'items', component: ItemComponent, canActivate : [AuthGuard] }
 ];
 
 @NgModule({

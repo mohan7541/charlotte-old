@@ -13,7 +13,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PeopleComponent, EditPeopleDialog } from './components/people/people.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { EdgeComponent, EditEdgeDialog } from './components/edge/edge.component';
-import { LocationComponent } from './components/location/location.component';
+import {EditPlacesDialog, PlacesComponent} from './components/places/places.component';
+import { ItemComponent, EditItemDialog } from './components/item/item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,10 @@ import { LocationComponent } from './components/location/location.component';
     EditPeopleDialog,
     EdgeComponent,
     EditEdgeDialog,
-    LocationComponent
+    PlacesComponent,
+    EditPlacesDialog,
+    ItemComponent,
+    EditItemDialog
   ],
   imports: [
     BrowserModule,

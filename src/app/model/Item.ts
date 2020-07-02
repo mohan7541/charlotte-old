@@ -1,9 +1,10 @@
 export default class Item {
+  id: String;
+  color: String;
   itemId: String;
   manufacturer: String;
   model: String;
-  color: String;
-  epc: String;
-  status : String;
-
+  serialNumber: String;
+  storeId: String;
+  tagId: String;
 }

@@ -22,7 +22,8 @@ export class AppComponent implements OnInit{
     {routerLink: '/dashboard', name: 'Dashboard', class: 'fa fa-tachometer'},
     {routerLink: '/people', name: 'People', class: 'fa fa-users'},
     {routerLink: '/things', name: 'Things', class: 'fa fa-wifi'},
-    {routerLink: '/places', name: 'Place', class: 'fa fa-map-marker'}
+    {routerLink: '/places', name: 'Places', class: 'fa fa-map-marker'},
+    {routerLink: '/items', name: 'Items', class: 'fa fa-shopping-bag'}
   ];
   isSideNavVisible = false;
   executeAction: EventEmitter<any> = new EventEmitter();

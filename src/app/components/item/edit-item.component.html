@@ -1,0 +1,79 @@
+<div class="card">
+
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Item ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="itemId" id="itemId" type="text">
+            <span class="bmd-help">Item ID</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Manufacturer</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="manufacturer" id="manufacturer" type="text">
+            <span class="bmd-help">Manufacturer</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Model</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="model" id="model" type="text">
+            <span class="bmd-help">Model</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Serial Number</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="serialNumber" id="serialNumber" type="text">
+            <span class="bmd-help">Serial Number</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Store ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="storeId" id="storeId" type="text">
+            <span class="bmd-help">Store ID</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Tag ID</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="tagId" id="tagId" type="text">
+            <span class="bmd-help">Tag ID</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Color</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="color" id="color" type="text">
+            <span class="bmd-help">Color</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+        <div class="ripple-container"></div>
+      </button>
+
+
+    </form>
+  </div>
+</div>
