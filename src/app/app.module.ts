@@ -15,6 +15,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { EdgeComponent, EditEdgeDialog } from './components/edge/edge.component';
 import {EditPlacesDialog, PlacesComponent} from './components/places/places.component';
 import { ItemComponent, EditItemDialog } from './components/item/item.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ItemComponent, EditItemDialog } from './components/item/item.component'
     PlacesComponent,
     EditPlacesDialog,
     ItemComponent,
-    EditItemDialog
+    EditItemDialog,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,

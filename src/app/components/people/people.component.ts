@@ -22,6 +22,9 @@ export class PeopleComponent implements OnInit, OnDestroy {
     {routerLink: '/places', name: 'Place', class: 'fa fa-map-marker'}
   ];
   peopleHeaders = ['First Name', 'Last Name', 'Email', 'Location', 'Active/Inacive', 'Action'];
+  peopleHeadersKeys = ['firstName', 'lastName', 'email', 'location',  'enabled'];
+
+  current: User;
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private peopleService: PeopleService,
@@ -51,6 +54,11 @@ export class PeopleComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
       enabled: [true, Validators.required]
     });
+    this.peopleService.getAllPeople()
+      .subscribe( data => {
+        console.log(data);
+        this.users = data;
+      });
   }
 
   changeScreen(routePath){
@@ -83,6 +91,12 @@ export class PeopleComponent implements OnInit, OnDestroy {
     if (this.mySubscription) {
       this.mySubscription.unsubscribe();
     }
+  }
+
+  onActionHandler($event: any) {
+    console.log('inside people')
+    console.log($event);
+    this.openDialog($event);
   }
 }
 

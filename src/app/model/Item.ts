@@ -7,4 +7,5 @@ export default class Item {
   serialNumber: String;
   storeId: String;
   tagId: String;
+  image: any;
 }

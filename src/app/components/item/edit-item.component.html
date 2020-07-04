@@ -1,5 +1,18 @@
 <div class="card">
+  <div *ngIf="currentItem.image" class="card-avatar text-center">
+    <a href="javascript:void(0)">
+      <img class="rounded-circle z-depth-2"
+           src="{{'data:image/jpeg;base64,' + currentItem.image.data}}"
+           width="100px"/>
+    </a>
+    <!--<button mat-button color="info" (click)="uploadImage()">
+      <mat-icon>file_upload</mat-icon>
+      {{imageUploadText}}
+    </button>
+    <input type="file" id="fileUpload" name="fileUpload" multiple="false"
 
+           accept="image/*" style="display:none;"/>-->
+  </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
       <div class="row">

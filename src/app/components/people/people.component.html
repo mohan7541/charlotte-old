@@ -112,7 +112,14 @@
                   <p class="card-category">All registered peoples</p>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
+                  <app-data-table
+                    [tableData]="users"
+                    [columnsToDisplay]="peopleHeaders"
+                    [columnKeys] = "peopleHeadersKeys"
+                    (onAction)="onActionHandler($event)"
+
+                  ></app-data-table>
+                  <!--<div class="table-responsive">
 
                     <table class="table table-hover">
                       <thead class=" text-info">
@@ -147,7 +154,7 @@
                           </a>
                         </td>
                         <td>
-                          <!--<div class=" card-profile" *ngIf="people.profilePhoto">
+                          &lt;!&ndash;<div class=" card-profile" *ngIf="people.profilePhoto">
                             <div class="card-avatar">
                               <a href="javascript:;">
                                 <img  src="{{'data:image/jpeg;base64,' + people.profilePhoto.data}}"
@@ -155,13 +162,13 @@
                                       class="rounded-circle z-depth-2"/>
                               </a>
                             </div>
-                          </div>-->
+                          </div>&ndash;&gt;
                         </td>
                       </tr>
 
                       </tbody>
                     </table>
-                  </div>
+                  </div>-->
                 </div>
               </div>
 
