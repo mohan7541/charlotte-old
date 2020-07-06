@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Edge} from '../../model/Edge';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NavigationEnd, Router} from '@angular/router';
@@ -6,6 +6,7 @@ import {PeopleService} from '../../service/people.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import {EditPeopleDialog} from '../people/people.component';
 import {EdgeService} from '../../service/edge.service';
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-edge',
@@ -17,9 +18,13 @@ export class EdgeComponent implements OnInit, OnDestroy {
   edges: Edge[];
   addForm: FormGroup;
   mySubscription: any;
-
-  peopleHeaders = ['Edge ID', 'Description', 'Manufacturer', 'Model', 'Serial Number', 'IP Address', 'Location ID', 'Status', 'Edit'];
-
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  headers = ['Edge ID', 'Description', 'Manufacturer', 'Model', 'Serial Number', 'IP Address', 'Location ID', 'Status', 'Edit'];
+  headerKeys = ['edgeId', 'description', 'manufacturer', 'model',  'serialNumber', 'ipAddress', 'locationId', 'status', 'edit'];
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private edgeService: EdgeService,
@@ -33,13 +38,26 @@ export class EdgeComponent implements OnInit, OnDestroy {
         this.router.navigated = false;
       }
     });
-    this.edgeService.getAllEdges()
-      .subscribe(data => {
-        console.log(data);
-        this.edges = data;
-      });
+   this.initialData({pageIndex: 0, pageSize: 20});
   }
 
+  initialData(pageAndSort: any){
+    this.edgeService.getAllEdges(pageAndSort)
+      .subscribe( data => {
+        console.log(data);
+        if(data) {
+          this.edges = data.content;
+          this.pageSize = data.numberOfElements;
+          this.length = data.totalElements;
+        }
+
+      });
+  }
+  onActionHandler($event: any) {
+    console.log('inside onActionHandler')
+    console.log($event);
+    this.openDialog($event);
+  }
   ngOnInit(): void {
     this.addForm = this.formBuilder.group({
       edgeId: ['', Validators.required],
@@ -53,6 +71,12 @@ export class EdgeComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.paginator.page.subscribe(page => {
+      console.log(page);
+      this.initialData(page);
+    });
+  }
   changeScreen(routePath) {
     this.router.navigate([routePath]);
   }
@@ -126,7 +150,7 @@ export class EditEdgeDialog implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit() {
+  onUpdate() {
     const edge = this.form.value;
     this.edgeService.updateEdge(edge)
       .subscribe(data => {

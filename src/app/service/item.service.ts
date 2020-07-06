@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpHeaders,
+  HttpParams,
+  HttpRequest
+} from '@angular/common/http';
 
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import {retry, catchError, map} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
-import {Edge} from "../model/Edge";
 import Item from "../model/Item";
-import PageAndSort from "../model/PageAndSort";
-import {PageEvent} from "@angular/material/paginator";
+
 import PageAndSortResponse from "../model/PageAndSortResponse";
 
 
@@ -63,5 +69,16 @@ export class ItemService {
     return this.httpClient.put<Item>(this.apiUrl + '/' + item.id, item);
   }
 
+  uploadFile(file: File, itemId: String):Observable<HttpEvent<{}>> {
+
+    let uploadURL = this.apiUrl + '/image/' + itemId;
+    const data: FormData = new FormData();
+    data.append('file', file);
+    const newRequest = new HttpRequest('POST', uploadURL, data, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.httpClient.request(newRequest);
+  }
 
 }

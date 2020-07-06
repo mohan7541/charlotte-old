@@ -2,111 +2,31 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 ml-auto mr-auto">
-        <div class="page-categories">
-          <ul class="nav nav-pills nav-pills-brand nav-pills-icons justify-content-center" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#list" role="tablist">
-                <i class="material-icons">list</i> List
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " data-toggle="tab" href="#add" role="tablist">
-                <i class="material-icons">add</i> Add
-              </a>
-            </li>
-            <!--<li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#edit" role="tablist">
-                <i class="material-icons">edit</i> Edit
-              </a>
-            </li>-->
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a mat-button class="nav-link active" href="#list" data-toggle="tab">
+                      <i class="material-icons">list</i> List
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a mat-button class="nav-link" href="#addUserForm" data-toggle="tab">
+                      <i class="material-icons">add</i> Add
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
 
-
-          </ul>
-          <div class="tab-content tab-space tab-subcategories">
-            <div class="tab-pane" id="add">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Add User </h4>
-                  <p class="card-category">
-
-                  </p>
-                </div>
-                <div class="card-body">
-                  <form (ngSubmit)="onSubmit()" [formGroup]="addForm" action="/" class="form-horizontal" id="addUserForm"
-                        method="post">
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label">First Name</label>
-                      <div class="col-sm-10">
-                        <div class="form-group">
-                          <input class="form-control" formControlName="firstName" id="firstName" type="text">
-                          <span class="bmd-help">First Name</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Last Name</label>
-                      <div class="col-sm-10">
-                        <div class="form-group">
-                          <input class="form-control" formControlName="lastName" id="lastName" type="text">
-                          <span class="bmd-help">Last Name</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <div class="form-group">
-                          <input class="form-control" formControlName="email" id="email" type="text">
-                          <span class="bmd-help">email</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Password</label>
-                      <div class="col-sm-10">
-                        <div class="form-group">
-                          <input class="form-control" formControlName="password" id="password" type="password">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Location</label>
-                      <div class="col-sm-10">
-                        <div class="form-group">
-                          <input class="form-control" formControlName="location" id="location" type="text">
-                          <span class="bmd-help">location</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
-                      <div class="col-sm-10 checkbox-radios">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input [defaultChecked]="true" class="form-check-input" formControlName="enabled" id="enabled"
-                                   type="checkbox">
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-
-
-                      </div>
-                      <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
-                        <div class="ripple-container"></div>
-                      </button>
-
-                    </div>
-
-                  </form>
-                </div>
+                </ul>
               </div>
             </div>
-
-            <div class="tab-pane active" id="list">
-              <div class="card">
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="list">
                 <div class="card-header">
                   <h4 class="card-title ">Peoples</h4>
                   <p class="card-category">All registered peoples</p>
@@ -119,62 +39,105 @@
                     (onAction)="onActionHandler($event)"
 
                   ></app-data-table>
-                  <!--<div class="table-responsive">
 
-                    <table class="table table-hover">
-                      <thead class=" text-info">
-                      <th *ngFor="let eachHeader of peopleHeaders">
-                        {{eachHeader}}
-                      </th>
+                </div>
+                <div class="card-footer">
+                  <mat-paginator [length]="length"
+                                 [pageSize]="pageSize"
+                                 [pageSizeOptions]="pageSizeOptions"
+                                 (page)=" pageEvent = $event">
 
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let people of users" class="d-table-row">
-
-                        <td>
-                          {{people.firstName}}
-                        </td>
-                        <td>
-                          {{people.lastName}}
-                        </td>
-                        <td>
-                          {{people.email}}
-                        </td>
-                        <td>
-                          {{people.location}}
-                        </td>
-                        <td>
-                          {{people.enabled ? 'Active' : 'Inactive'}}
-                        </td>
-                        <td>
-                          <a (click)="openDialog(people)">
-                                    <span class="material-icons">
-                                      edit
-                                      </span>
-                          </a>
-                        </td>
-                        <td>
-                          &lt;!&ndash;<div class=" card-profile" *ngIf="people.profilePhoto">
-                            <div class="card-avatar">
-                              <a href="javascript:;">
-                                <img  src="{{'data:image/jpeg;base64,' + people.profilePhoto.data}}"
-                                      width="50px"
-                                      class="rounded-circle z-depth-2"/>
-                              </a>
-                            </div>
-                          </div>&ndash;&gt;
-                        </td>
-                      </tr>
-
-                      </tbody>
-                    </table>
-                  </div>-->
+                  </mat-paginator>
                 </div>
               </div>
+              <div class="tab-pane" id="addUserForm">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Add User </h4>
+                    <p class="card-category">
 
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="addForm" action="/" class="form-horizontal"
+                          method="post">
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <input class="form-control" formControlName="lastName" id="lastName" type="text">
+                            <span class="bmd-help">Last Name</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <input class="form-control" formControlName="firstName" id="firstName" type="text">
+                            <span class="bmd-help">First Name</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <input class="form-control" formControlName="email" id="email" type="text">
+                            <span class="bmd-help">email</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <input class="form-control" formControlName="password" id="password" type="password">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">Location</label>
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <input class="form-control" formControlName="location" id="location" type="text">
+                            <span class="bmd-help">location</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label label-checkbox">Enabled</label>
+                        <div class="col-sm-10 checkbox-radios">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input [defaultChecked]="true" class="form-check-input" formControlName="enabled" id="enabled"
+                                     type="checkbox">
+                              <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                            </label>
+                          </div>
+
+
+                        </div>
+                        <button class="btn btn-fill btn-primary ml-auto mr-auto" type="submit">Submit
+                          <div class="ripple-container"></div>
+                        </button>
+
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="card-footer">
+
+          </div>
+
       </div>
     </div>
   </div>

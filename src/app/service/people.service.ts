@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import {Router} from '@angular/router';
-import { User } from '../model/User';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpEvent, HttpParams, HttpRequest} from '@angular/common/http';
+import {User} from '../model/User';
 import {Observable} from "rxjs";
+import PageAndSortResponse from "../model/PageAndSortResponse";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeopleService {
-  baseUrl = 'http://ec2-13-58-105-249.us-east-2.compute.amazonaws.com:8092/user/';
-  constructor(private http: HttpClient) { }
+  baseUrl = environment.apiUrl + '/user';
 
-  getAllPeople(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
+  constructor(private http: HttpClient) {
+  }
+
+  getAllPeople(pageAndSort: any): Observable<PageAndSortResponse> {
+    return this.http.get<PageAndSortResponse>(this.baseUrl,
+      {
+        params: new HttpParams()
+          .set('direction', 'DESC')
+          .set('page', pageAndSort.pageIndex)
+          .set('size', pageAndSort.pageSize)
+      });
   }
 
   createUser(user: User) {
@@ -22,5 +30,18 @@ export class PeopleService {
 
   updateUser(user: User) {
     return this.http.put<User>(this.baseUrl + user.id, user);
+  }
+
+  uploadFile(file: File, userId: String):Observable<HttpEvent<{}>> {
+
+    let uploadURL = this.baseUrl + '/image/' + userId;
+    console.log(uploadURL);
+    const data: FormData = new FormData();
+    data.append('image', file);
+    const newRequest = new HttpRequest('POST', uploadURL, data, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(newRequest);
   }
 }

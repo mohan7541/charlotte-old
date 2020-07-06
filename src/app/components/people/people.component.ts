@@ -1,9 +1,12 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute, NavigationEnd} from '@angular/router';
 import {PeopleService} from '../../service/people.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/User';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import PageAndSort from "../../model/PageAndSort";
+import Item from "../../model/Item";
 
 @Component({
   selector: 'app-people',
@@ -14,21 +17,21 @@ export class PeopleComponent implements OnInit, OnDestroy {
   users: User[];
   addForm: FormGroup;
   mySubscription: any;
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  menuItems = [
-    {routerLink: '/dashboard', name: 'Dashboard', class: 'fa fa-tachometer'},
-    {routerLink: '/people', name: 'People', class: 'fa fa-users'},
-    {routerLink: '/things', name: 'Things', class: 'fa fa-wifi'},
-    {routerLink: '/places', name: 'Place', class: 'fa fa-map-marker'}
-  ];
-  peopleHeaders = ['First Name', 'Last Name', 'Email', 'Location', 'Active/Inacive', 'Action'];
-  peopleHeadersKeys = ['firstName', 'lastName', 'email', 'location',  'enabled'];
+  peopleHeaders = ['Last Name', 'First Name',  'Email', 'Location', 'Active/Inacive', 'Action'];
+  peopleHeadersKeys = ['lastName', 'firstName',  'email', 'location',  'enabled', 'action'];
 
   current: User;
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private peopleService: PeopleService,
               public dialog: MatDialog) {
+    console.log("in constructor");
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -38,11 +41,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
         this.router.navigated = false;
       }
     });
-    this.peopleService.getAllPeople()
-      .subscribe( data => {
-        console.log(data);
-        this.users = data;
-      });
   }
 
   ngOnInit(): void {
@@ -54,18 +52,26 @@ export class PeopleComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
       enabled: [true, Validators.required]
     });
-    this.peopleService.getAllPeople()
+    this.initialData({pageIndex: 0, pageSize: 20});
+  }
+  initialData(pageAndSort: any) {
+    this.peopleService.getAllPeople(pageAndSort)
       .subscribe( data => {
         console.log(data);
-        this.users = data;
+        this.users = data.content;
+        this.pageSize = data.numberOfElements;
+        this.length = data.totalElements;
       });
   }
-
+  ngAfterViewInit(): void {
+    this.paginator.page.subscribe(page => {
+      console.log(page);
+      this.initialData(page);
+    });
+  }
   changeScreen(routePath){
     this.router.navigate([routePath]);
   }
-
-
 
   onSubmit() {
     let user = this.addForm.value;
@@ -109,6 +115,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 export class EditPeopleDialog implements OnInit {
   currentUser: User;
   form: FormGroup;
+  uploadedFile: File;
   constructor(
     private formBuilder: FormBuilder,
     private peopleService: PeopleService,
@@ -124,7 +131,7 @@ export class EditPeopleDialog implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
+      /*password: ['', Validators.required],*/
       location: ['', Validators.required],
       profilePhoto: ['', ''],
       roles: ['', ''],
@@ -134,11 +141,17 @@ export class EditPeopleDialog implements OnInit {
     this.form.setValue(this.currentUser);
   }
 
-
+  uploadImage() {
+    const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
+    fileUpload.onchange = () => {
+      this.uploadedFile = fileUpload.files[0];
+    };
+    fileUpload.click();
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
-  onSubmit() {
+  onUpdate() {
     const user = this.form.value;
     user.profilePhoto = null;
     this.peopleService.updateUser(user)
@@ -146,6 +159,20 @@ export class EditPeopleDialog implements OnInit {
         this.dialogRef.close();
         this.router.navigate(['people']);
       });
+      /*if (this.uploadedFile) {
+        this.saveImage();
+      }*/
     console.log(user);
+  }
+  private saveImage() {
+    if (this.uploadedFile)
+      console.log(this.uploadedFile);
+      this.peopleService.uploadFile(this.uploadedFile, this.currentUser.id)
+        .subscribe(event => {
+          console.log(event);
+          this.dialogRef.close();
+
+        });
+    this.router.navigate(['people']);
   }
 }

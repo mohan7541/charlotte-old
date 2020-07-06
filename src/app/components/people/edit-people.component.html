@@ -1,28 +1,45 @@
 <div class="card">
-  <div *ngIf="currentUser.profilePhoto" class="card-avatar text-center">
-    <a href="javascript:void(0)">
-      <img class="rounded-circle z-depth-2"
-           src="{{'data:image/jpeg;base64,' + currentUser.profilePhoto.data}}"
-           width="100px"/>
-    </a>
-  </div>
+
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
-      <div class="row">
-        <label class="col-sm-2 col-form-label">First Name</label>
-        <div class="col-sm-10">
-          <div class="form-group">
-            <input class="form-control" formControlName="firstName" id="firstName" type="text">
-            <span class="bmd-help">First Name</span>
-          </div>
-        </div>
-      </div>
+    <form (ngSubmit)="onUpdate()" [formGroup]="form" action="/" class="form-horizontal" id="editForm" method="post">
+      <div class="card-avatar text-center">
+          <span *ngIf="currentUser.profilePhoto" class="card-avatar text-center">
+            <a href="javascript:void(0)">
+              <img class="rounded-circle z-depth-2"
+                   src="{{'data:image/jpeg;base64,' + currentUser.profilePhoto.data}}"
+                   width="100px"/>
+            </a>
+          </span>
+              <!--<span>
+            <button mat-button color="primary" (click)="uploadImage()">
+            <mat-icon>file_upload</mat-icon>
+              Upload
+          </button>
+          <span class="text-right" *ngIf="uploadedFile">
+
+                {{uploadedFile.name}}
+
+          </span>
+          <input type="file" id="fileUpload" name="fileUpload" multiple="false"
+                 accept="image/*" style="display:none;"/>
+          </span>-->
+
+            </div>
       <div class="row">
         <label class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-10">
           <div class="form-group">
             <input class="form-control" formControlName="lastName" id="lastName" type="text">
             <span class="bmd-help">Last Name</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
+            <span class="bmd-help">First Name</span>
           </div>
         </div>
       </div>
